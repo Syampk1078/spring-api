@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,7 +38,7 @@ public class AuthController {
 		        	errors.put(fieldError.getField(), fieldError.getDefaultMessage());
 		        });
 		        response.put("errors", errors);  // List of all error messages
-		        return ResponseEntity.badRequest().body(response);
+		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		    }		
 		 Object user = service.addUser(signupData);
 	        response.put("status", "success");
